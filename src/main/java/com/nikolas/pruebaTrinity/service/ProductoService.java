@@ -110,7 +110,7 @@ public class ProductoService extends ABaseService<Producto> implements IProducto
         // Guardar los cambios
         Producto productoActualizado = productoRepository.save(producto);
 
-        return new ApiResponseDto<>(productoActualizado, "El estado del producto se ha actualizado 12q", true);
+        return new ApiResponseDto<>(productoActualizado, "El estado del producto se ha actualizado", true);
     }
 
 

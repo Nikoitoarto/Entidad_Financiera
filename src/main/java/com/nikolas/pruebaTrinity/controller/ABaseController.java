@@ -3,6 +3,7 @@ package com.nikolas.pruebaTrinity.controller;
 import com.nikolas.pruebaTrinity.Dto.ApiResponseDto;
 import com.nikolas.pruebaTrinity.IService.IBaseService;
 import com.nikolas.pruebaTrinity.entity.ABaseEntity;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,7 @@ public abstract class ABaseController<T extends ABaseEntity, S extends IBaseServ
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponseDto<T>> save(@RequestBody T entity){
+    public ResponseEntity<ApiResponseDto<T>> save(@Valid @RequestBody T entity){
         try{
             entity.setCreatedAt(LocalDateTime.now());
             return  ResponseEntity.ok(new ApiResponseDto<T>(service.save(entity), "Datos Guardados", true));
