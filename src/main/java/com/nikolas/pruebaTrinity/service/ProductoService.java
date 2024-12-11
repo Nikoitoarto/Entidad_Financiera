@@ -36,6 +36,8 @@ public class ProductoService extends ABaseService<Producto> implements IProducto
         Cliente clienteEncontrado = clienteRepository.findById(productoDto.getClienteId())
                 .orElseThrow(() -> new RuntimeException("La persona con ID " + productoDto.getClienteId() + " no existe"));
 
+        String nombreCliente = clienteEncontrado.getNombres() + " " + clienteEncontrado.getApellidos();
+
         if (productoDto.getProducto().getSaldo() < 0) {
             throw new IllegalArgumentException("El producto saldo no puede ser negativo");
         }
@@ -50,7 +52,7 @@ public class ProductoService extends ABaseService<Producto> implements IProducto
             nuevoProducto.setNumeroCuenta(Long.parseLong(NumeroCuentaGenerador.generarNumeroCuenta("33")));
         }
 
-        nuevoProducto.setCliente(clienteEncontrado);
+        nuevoProducto.setNombreCliente(nombreCliente);
         nuevoProducto.setExentaGmf(productoDto.getProducto().getExentaGmf());
         nuevoProducto.setSaldo(productoDto.getProducto().getSaldo());
 
@@ -108,7 +110,7 @@ public class ProductoService extends ABaseService<Producto> implements IProducto
         // Guardar los cambios
         Producto productoActualizado = productoRepository.save(producto);
 
-        return new ApiResponseDto<>(productoActualizado, "El estado del producto se ha actualizado exitosamente", true);
+        return new ApiResponseDto<>(productoActualizado, "El estado del producto se ha actualizado 12q", true);
     }
 
 

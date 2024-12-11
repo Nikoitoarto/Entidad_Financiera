@@ -29,6 +29,7 @@ public abstract class ABaseEntity {
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
+        this.state = Boolean.TRUE;
     }
 
     @PreUpdate
